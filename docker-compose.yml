@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  stl-price-estimator:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # Add more memory if needed for large STL files
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
