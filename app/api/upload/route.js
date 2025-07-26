@@ -216,7 +216,7 @@ export async function POST(req) {
     // Determine the PrusaSlicer command based on the environment
     const isDocker = process.env.NODE_ENV === 'production' || process.platform === 'linux';
     const command = isDocker 
-      ? `xvfb-prusa-slicer /usr/local/bin/PrusaSlicer/AppRun --load "${prusaConfigPath}" --gcode-comments --export-gcode "${filePath}"`
+      ? `xvfb-prusa-slicer --load "${prusaConfigPath}" --gcode-comments --export-gcode "${filePath}"`
       : `"C:\\Program Files\\Prusa3D\\PrusaSlicer\\prusa-slicer-console.exe" "${filePath}" --load "${prusaConfigPath}" --gcode-comments --export-gcode`;
 
     return new Promise((resolve) => {
